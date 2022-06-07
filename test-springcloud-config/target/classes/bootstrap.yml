@@ -1,0 +1,31 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: config-server
+  cloud:                                                  #config服务端，从git拉取数据
+    config:
+      server:
+        native:
+          search-locations: D:/工作目录/config/application.yml
+  profiles:
+    active: native #本地配置文件必须开启本地环境
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8088/eureka
+  instance:
+    prefer-ip-address: true # 当其它服务获取地址时提供ip而不是hostname
+    ip-address: 127.0.0.1 # 指定自己的ip信息，不指定的话会自己寻找
+
+management:                    #SpringCloud 1.5版本暴露接口，暴露/bus-refresh接口
+  security:
+    enabled: false
+  #  endpoints:                  #SpringCloud 2.0.0版本以后暴露接口方式
+  #    web:
+  #      exposure:
+  #        include: "*"
+
+security:                       #是否开启基本的鉴权，默认为true
+  basic:
+    enabled: false
