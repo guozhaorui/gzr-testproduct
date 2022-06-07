@@ -1,5 +1,6 @@
 package com.test.appA;
 
+import com.test.appA.component.MqSender;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,9 +13,16 @@ import javax.annotation.Resource;
 public class TestRedis {
     @Resource
     private org.springframework.data.redis.core.StringRedisTemplate RedisTemplate;
+    @Resource
+    private MqSender mqSender;
 
     @Test
     public void test() {
         RedisTemplate.opsForValue().set("name", "gzr1sdfsd大幅度反对法大幅度反对法大幅度反对非法大幅度反对反对反对反对对方顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶");
+    }
+
+    @Test
+    public void test2() {
+        mqSender.sendMsg("gzrtest");
     }
 }
