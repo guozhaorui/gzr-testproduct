@@ -1,6 +1,11 @@
 server:
   port: 8081
 spring:
+  rabbitmq:
+    host: amqp-cn-7pp2q9yd700l.cn-hangzhou.amqp-2.net.mq.amqp.aliyuncs.com
+    port: 5672
+    username: MjphbXFwLWNuLTdwcDJxOXlkNzAwbDpMVEFJNXRLN3REQ3h6bXZYYm1Zd1h3WHM=
+    password: RjU4MTY3NEUyM0FDMUIyRjE2MTgzOEUwMUNGOUU3RkU1MzI3OTNBRToxNjU0NjE4MTA1ODI0
   application:
     name: application-B
 eureka:

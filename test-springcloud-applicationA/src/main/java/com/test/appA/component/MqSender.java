@@ -11,8 +11,6 @@ import java.util.UUID;
 
 @Component
 public class MqSender implements RabbitTemplate.ConfirmCallback {
-
-
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     //由于rabbitTemplate的scope属性设置为ConfigurableBeanFactory.SCOPE_PROTOTYPE，所以不能自动注入
@@ -25,12 +23,17 @@ public class MqSender implements RabbitTemplate.ConfirmCallback {
     public MqSender(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
         rabbitTemplate.setConfirmCallback(this); //rabbitTemplate如果为单例的话，那回调就是最后设置的内容
+        rabbitTemplate.setChannelTransacted(true);
     }
 
     public void sendMsg(String content) {
         CorrelationData correlationId = new CorrelationData(UUID.randomUUID().toString());
-        //把消息放入ROUTINGKEY_A对应的队列当中去，对应的是队列A
         rabbitTemplate.convertAndSend("gzrexchange", "gzrqueue", content, correlationId);
+    }
+
+    public void sender(String content) {
+        CorrelationData correlationId = new CorrelationData(UUID.randomUUID().toString());
+        rabbitTemplate.convertAndSend("ggg", "gggzzzrrr", "sfdfdfd", correlationId);
     }
 
     /**

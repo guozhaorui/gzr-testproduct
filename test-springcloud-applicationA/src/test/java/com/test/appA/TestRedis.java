@@ -25,4 +25,10 @@ public class TestRedis {
     public void test2() {
         mqSender.sendMsg("gzrtest");
     }
+
+    @Test
+    public void test3() {
+        mqSender.sender("2233232");
+    }
+
 }

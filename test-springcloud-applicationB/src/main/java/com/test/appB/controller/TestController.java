@@ -10,15 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("testB")
 public class TestController {
-    @Autowired
-    private TestFeign testFeign;
-    @Value("${name}")
-    private String name;
-
     @GetMapping("/test1")
     public String Test() {
-        System.out.println(name);
-        System.out.println(testFeign.testFeign());
         return "33";
     }
 }
