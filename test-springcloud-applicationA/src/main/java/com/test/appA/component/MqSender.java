@@ -1,6 +1,5 @@
 package com.test.appA.component;
 
-import com.test.appA.config.MqConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
@@ -13,10 +12,12 @@ import java.util.UUID;
 @Component
 public class MqSender implements RabbitTemplate.ConfirmCallback {
 
+
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     //由于rabbitTemplate的scope属性设置为ConfigurableBeanFactory.SCOPE_PROTOTYPE，所以不能自动注入
     private RabbitTemplate rabbitTemplate;
+
     /**
      * 构造方法注入rabbitTemplate
      */
@@ -31,6 +32,7 @@ public class MqSender implements RabbitTemplate.ConfirmCallback {
         //把消息放入ROUTINGKEY_A对应的队列当中去，对应的是队列A
         rabbitTemplate.convertAndSend("gzrexchange", "gzrqueue", content, correlationId);
     }
+
     /**
      * 回调
      */

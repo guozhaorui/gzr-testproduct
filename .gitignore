@@ -1,0 +1,11 @@
+*.iws
+*.iml
+*.ipr
+*.log
+target/
+.settings
+.product
+.classspath
+.class
+*svn/
+.idea/
