@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
-@Configuration
+//@Configuration
 public class MqConfig {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Value("${spring.rabbitmq.host}")

@@ -20,11 +20,6 @@ public class TestController {
     @GetMapping("/test1")
     public String Test(HttpServletResponse response) throws IOException {
 
-        FileInputStream is = new FileInputStream("C:\\Users\\User\\Desktop\\妮妮.txt");
-
-        while ((is.read())!=1){
-        }
-
         System.out.println("ss");
         return null;
     }

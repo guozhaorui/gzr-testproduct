@@ -20,7 +20,7 @@ import java.io.IOException;
 /**
  * MQ消息监听容器
  */
-@Component
+// @Component
 public class MyMessageListenerContainer extends SimpleMessageListenerContainer {
     @Autowired
     private ConnectionFactory connectionFactory;
