@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.UUID;
 
 @Component
-public class MqSender implements RabbitTemplate.ConfirmCallback {
+public class MqSender {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     //由于rabbitTemplate的scope属性设置为ConfigurableBeanFactory.SCOPE_PROTOTYPE，所以不能自动注入
@@ -22,31 +22,25 @@ public class MqSender implements RabbitTemplate.ConfirmCallback {
     @Autowired
     public MqSender(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
-        rabbitTemplate.setConfirmCallback(this); //rabbitTemplate如果为单例的话，那回调就是最后设置的内容
-        rabbitTemplate.setChannelTransacted(true);
-    }
-
-    public void sendMsg(String content) {
-        CorrelationData correlationId = new CorrelationData(UUID.randomUUID().toString());
-        rabbitTemplate.convertAndSend("gzrexchange", "gzrqueue", content, correlationId);
-    }
-
-    public void sender(String content) {
-        CorrelationData correlationId = new CorrelationData(UUID.randomUUID().toString());
-        rabbitTemplate.convertAndSend("ggg", "gggzzzrrr", "sfdfdfd", correlationId);
+        rabbitTemplate.setConfirmCallback((correlationData, ack, cause) -> {
+            logger.info(" 回调id:" + correlationData);
+            if (ack) {
+                logger.info("消息成功消费");
+            } else {
+                logger.info("消息消费失败:" + cause);
+            }
+        }); //rabbitTemplate如果为单例的话，那回调就是最后设置的内容
     }
 
     /**
-     * 回调
+     * 发送消息
+     *
+     * @param exchange
+     * @param routing
+     * @param msg
      */
-    @Override
-    public void confirm(CorrelationData correlationData, boolean ack, String cause) {
-        logger.info(" 回调id:" + correlationData);
-        if (ack) {
-            logger.info("消息成功消费");
-        } else {
-            logger.info("消息消费失败:" + cause);
-        }
+    public void send(String exchange, String routing, String msg) {
+        rabbitTemplate.convertAndSend(exchange, routing, msg, new CorrelationData(UUID.randomUUID().toString()));
     }
 }
 

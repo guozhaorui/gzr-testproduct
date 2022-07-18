@@ -34,7 +34,6 @@ public class MqConfig {
         connectionFactory.setUsername(username);
         connectionFactory.setPassword(password);
         connectionFactory.setVirtualHost("gzr");
-        connectionFactory.setPublisherConfirms(true);
 
         return connectionFactory;
     }

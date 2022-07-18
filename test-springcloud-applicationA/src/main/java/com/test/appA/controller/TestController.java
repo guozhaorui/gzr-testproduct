@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("testA")
@@ -15,9 +18,15 @@ public class TestController {
     private StringRedisTemplate stringRedisTemplate;
 
     @GetMapping("/test1")
-    public String Test() {
-        stringRedisTemplate.opsForValue().set("ddd", "ddfd");
-        return "22";
+    public String Test(HttpServletResponse response) throws IOException {
+
+        FileInputStream is = new FileInputStream("C:\\Users\\User\\Desktop\\妮妮.txt");
+
+        while ((is.read())!=1){
+        }
+
+        System.out.println("ss");
+        return null;
     }
 
     public static TInterface test() {
