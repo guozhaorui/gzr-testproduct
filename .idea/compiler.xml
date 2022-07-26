@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="test-springcloud-config" />
         <module name="test-springcloud-gateway" />
+        <module name="test-springcloud-config" />
         <module name="test-springcloud-applicationB" />
         <module name="test-springcloud-applicationA" />
         <module name="test-springcloud-eureka" />

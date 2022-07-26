@@ -1,35 +1,23 @@
 package com.test.appA.controller;
 
-import com.test.appA.test.TInterface;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import com.test.appA.dao.JProductDao;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
-import java.io.FileInputStream;
-import java.io.IOException;
 
 @RestController
-@RequestMapping("testA")
+@RequestMapping(value = "/test")
 public class TestController {
     @Resource
-    private StringRedisTemplate stringRedisTemplate;
+    private JProductDao productDao;
 
-    @GetMapping("/test1")
-    public String Test(HttpServletResponse response) throws IOException {
-
-        System.out.println("ss");
-        return null;
-    }
-
-    public static TInterface test() {
-        return (s) -> "sss" + s;
-    }
-
-
-    public static void main(String[] args) {
-        System.out.println(test().testMethod("1223"));
+    @GetMapping("testQuery")
+    public void testQuery() {
+        System.out.println("当前线程名称:" + Thread.currentThread().getName());
+        Long start = System.currentTimeMillis();
+        productDao.queryByName("测试商品1658911576919");
+        System.out.println((System.currentTimeMillis() - start) / 1000);
     }
 }
