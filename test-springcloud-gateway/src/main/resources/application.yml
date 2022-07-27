@@ -19,7 +19,16 @@ spring:
         - id: application-A
           uri: lb://application-A
           predicates:
-            - Path=/testA/**
+            - Path=/test/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                #限流策略，对应策略的Bean
+                key-resolver: "#{@ipKeyResolver}"
+                # 每秒允许处理的请求数量  # 令牌桶每秒填充平均速率
+                redis-rate-limiter.replenishRate: 1
+                # 每秒最大处理的请求数量# 令牌桶总容量
+                redis-rate-limiter.burstCapacity: 2
         - id: testApp2
           uri: lb://testApp2
           predicates:
