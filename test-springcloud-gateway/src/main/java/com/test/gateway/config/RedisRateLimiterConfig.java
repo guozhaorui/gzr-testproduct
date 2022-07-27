@@ -12,9 +12,9 @@ public class RedisRateLimiterConfig {
      *
      * @return
      */
-    @Bean("ipResolver")
+    @Bean("ipKeyResolver")
     public KeyResolver ipKeyResolver() {
         System.out.println("限流方法");
-        return exchange -> Mono.just(exchange.getRequest().getRemoteAddress().getHostName());
+        return exchange -> Mono.just(exchange.getRequest().getRemoteAddress().getHostString());
     }
 }
