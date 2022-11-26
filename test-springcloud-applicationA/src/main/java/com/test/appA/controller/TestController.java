@@ -20,4 +20,8 @@ public class TestController {
         productDao.queryByName("测试商品1658911576919");
         System.out.println((System.currentTimeMillis() - start) / 1000);
     }
+    @GetMapping("ok")
+    public String ok() {
+        return "OK";
+    }
 }
