@@ -1,5 +1,7 @@
 package com.test.appA.entity;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.io.Serializable;
 
 /**
@@ -16,7 +18,6 @@ public class JProduct implements Serializable {
     private String productName;
     
     private String productImage;
-
 
     public Long getId() {
         return id;

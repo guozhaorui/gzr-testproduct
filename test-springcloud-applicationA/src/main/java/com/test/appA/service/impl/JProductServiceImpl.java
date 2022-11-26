@@ -3,6 +3,7 @@ package com.test.appA.service.impl;
 import com.test.appA.entity.JProduct;
 import com.test.appA.dao.JProductDao;
 import com.test.appA.service.JProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -20,6 +21,9 @@ import javax.annotation.Resource;
 public class JProductServiceImpl implements JProductService {
     @Resource
     private JProductDao jProductDao;
+
+    @Autowired
+    private  JProductService jproductService;
 
     /**
      * 通过ID查询单条数据
