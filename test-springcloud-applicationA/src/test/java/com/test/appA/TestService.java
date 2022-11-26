@@ -21,7 +21,7 @@ public class TestService {
     private JProductDao productDao;
     private ExecutorService executorService = Executors.newFixedThreadPool(20);
 
-    @Test
+  //  @Test
     public void test() throws Exception {
         CountDownLatch c = new CountDownLatch(20);
         for (int i = 0; i < 100; i++) {
@@ -42,5 +42,9 @@ public class TestService {
             });
         }
         c.await();
+    }
+
+
+    public static void main(String[] args) {
     }
 }
