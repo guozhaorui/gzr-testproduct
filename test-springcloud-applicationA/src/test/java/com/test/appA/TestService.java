@@ -2,6 +2,7 @@ package com.test.appA;
 
 import com.test.appA.dao.JProductDao;
 import com.test.appA.entity.JProduct;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +17,7 @@ import java.util.concurrent.Executors;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Ignore
 public class TestService {
     @Resource
     private JProductDao productDao;
